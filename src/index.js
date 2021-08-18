@@ -6,22 +6,19 @@ const config = {
   height: 600,
   physics: {
     default: "arcade",
-    arcade: {
-      gravity: { y: 200 },
-    },
   },
   scene: {
-    preload: preload,
-    create: create,
+    preload,
+    create,
   },
 };
 
 new Phaser.Game(config);
 
 function preload() {
-  this.load.image("sky", "assets/sky.png");
+  this.load.image("sky-bg", "assets/sky.png");
 }
 
 function create() {
-  this.add.image(400, 300, "sky");
+  this.add.image(0, 0, "sky-bg").setOrigin(0);
 }
