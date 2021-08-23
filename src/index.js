@@ -60,6 +60,8 @@ function update() {
   if (bird.y < -bird.height || bird.y > config.height) {
     restartBirtPosition();
   }
+
+  recyclePipes();
 }
 
 function flap() {
@@ -93,4 +95,16 @@ function getRightMostPipe() {
   });
 
   return rightMostX;
+}
+
+function recyclePipes() {
+  let tempPipes = [];
+  pipes.getChildren().forEach((pipe) => {
+    if (pipe.getBounds().right <= 0) {
+      tempPipes.push(pipe);
+      if (tempPipes.length === 2) {
+        placePipe(...tempPipes);
+      }
+    }
+  });
 }
