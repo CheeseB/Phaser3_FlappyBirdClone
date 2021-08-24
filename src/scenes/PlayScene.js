@@ -11,7 +11,7 @@ class PlayScene extends BaseScene {
     this.pipes = null;
     this.isPaused = false;
 
-    this.flapVelocity = 300;
+    this.flapVelocity = 250;
 
     this.score = 0;
     this.scoreText = '';
@@ -23,23 +23,23 @@ class PlayScene extends BaseScene {
         pipeVerticalDistanceRange: [150, 200],
       },
       normal: {
-        pipeHorizontalDistanceRange: [280, 330],
-        pipeVerticalDistanceRange: [140, 190],
+        pipeHorizontalDistanceRange: [250, 400],
+        pipeVerticalDistanceRange: [130, 180],
       },
       hard: {
-        pipeHorizontalDistanceRange: [250, 310],
-        pipeVerticalDistanceRange: [120, 170],
+        pipeHorizontalDistanceRange: [200, 300],
+        pipeVerticalDistanceRange: [100, 150],
       },
     };
   }
 
   create() {
-    this.currentDifficulty = 'easy';
     super.create();
     this.createBird();
     this.createPipes();
     this.createColliders();
     this.createScore();
+    this.createDifficulty();
     this.createPause();
     this.handleInputs();
     this.listenToEvents();
@@ -80,7 +80,15 @@ class PlayScene extends BaseScene {
     const bestScore = localStorage.getItem('bestScore');
 
     this.scoreText = this.add.text(16, 16, `Score: ${0}`, { fontSize: '32px', fill: '#000' });
-    this.add.text(16, 52, `Best Score: ${bestScore || 0}`, { fontSize: '18px', fill: '#000' });
+    this.add.text(16, 52, `Best Score: ${bestScore || 0}`, { fontSize: '28px', fill: '#000' });
+  }
+
+  createDifficulty() {
+    this.currentDifficulty = 'easy';
+    this.difficultyText = this.add.text(16, 88, this.currentDifficulty, {
+      fontSize: '28px',
+      fill: '#000',
+    });
   }
 
   createPause() {
@@ -160,6 +168,7 @@ class PlayScene extends BaseScene {
           this.placePipe(...tempPipes);
           this.increaseScore();
           this.saveBestScore();
+          this.increaseDifficulty();
         }
       }
     });
@@ -207,6 +216,20 @@ class PlayScene extends BaseScene {
 
     if (!bestScore || this.score > bestScore) {
       localStorage.setItem('bestScore', this.score);
+    }
+  }
+
+  increaseDifficulty() {
+    if (this.score === 10) {
+      this.currentDifficulty = 'normal';
+      this.difficultyText.setText(this.currentDifficulty);
+      this.difficultyText.setColor('#f88');
+    }
+
+    if (this.score === 20) {
+      this.currentDifficulty = 'hard';
+      this.difficultyText.setText(this.currentDifficulty);
+      this.difficultyText.setColor('#f00');
     }
   }
 
