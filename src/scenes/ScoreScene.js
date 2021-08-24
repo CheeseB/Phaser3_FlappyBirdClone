@@ -2,13 +2,12 @@ import BaseScene from './BaseScene';
 
 class ScoreScene extends BaseScene {
   constructor(config) {
-    super('ScoreScene', config);
+    super('ScoreScene', { ...config, canGoBack: true });
   }
 
   create() {
     super.create();
     this.createBestScore();
-    this.createBackButton();
   }
 
   createBestScore() {
@@ -19,25 +18,6 @@ class ScoreScene extends BaseScene {
         fill: '#fff',
       })
       .setOrigin(0.5);
-  }
-
-  createBackButton() {
-    const backBtn = this.add
-      .text(16, 16, '< menu', { fontSize: '20px', fill: '#fff' })
-      .setInteractive()
-      .setOrigin(0);
-
-    backBtn.on('pointerover', () => {
-      backBtn.setStyle({ fontSize: '22px', fill: '#ff0' });
-    });
-
-    backBtn.on('pointerout', () => {
-      backBtn.setStyle({ fontSize: '20px', fill: '#fff' });
-    });
-
-    backBtn.on('pointerup', () => {
-      this.scene.start('MenuScene');
-    });
   }
 }
 
