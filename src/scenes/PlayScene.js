@@ -115,20 +115,12 @@ class PlayScene extends BaseScene {
       .setScale(3)
       .setOrigin(1);
 
-    this.add
-      .text(this.config.width - 80, this.config.height - 20, '[P] pause', {
-        fontSize: '25px',
-        fill: '#fff',
-      })
-      .setOrigin(1);
-
     pauseButton.on('pointerdown', this.pauseGame, this);
   }
 
   handleInputs() {
     this.input.on('pointerdown', this.flap, this);
     this.input.keyboard.on('keydown_SPACE', this.flap, this);
-    this.input.keyboard.on('keydown_P', this.pauseGame, this);
   }
 
   pauseGame() {
