@@ -25,9 +25,6 @@ const config = {
   ...SHARED_CONFIG,
   physics: {
     default: 'arcade',
-    arcade: {
-      debug: true,
-    },
   },
   scene: initScenes(),
 };
