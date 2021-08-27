@@ -19,16 +19,16 @@ class PlayScene extends BaseScene {
     this.currentDifficulty = 'easy';
     this.defficulties = {
       easy: {
-        pipeHorizontalDistanceRange: [300, 500],
-        pipeVerticalDistanceRange: [150, 200],
+        pipeHorizontalDistanceRange: [400, 500],
+        pipeVerticalDistanceRange: [170, 200],
       },
       normal: {
-        pipeHorizontalDistanceRange: [250, 400],
-        pipeVerticalDistanceRange: [130, 180],
+        pipeHorizontalDistanceRange: [300, 400],
+        pipeVerticalDistanceRange: [130, 160],
       },
       hard: {
         pipeHorizontalDistanceRange: [200, 300],
-        pipeVerticalDistanceRange: [100, 150],
+        pipeVerticalDistanceRange: [100, 120],
       },
     };
   }
