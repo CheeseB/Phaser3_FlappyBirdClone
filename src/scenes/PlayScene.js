@@ -1,7 +1,7 @@
 import BaseScene from './BaseScene';
 
 const VELOCITY = 200;
-const PIPES_TO_RENDER = 10;
+const PIPES_TO_RENDER = 3;
 
 class PlayScene extends BaseScene {
   constructor(config) {
@@ -20,15 +20,15 @@ class PlayScene extends BaseScene {
     this.defficulties = {
       easy: {
         pipeHorizontalDistanceRange: [400, 450],
-        pipeVerticalDistanceRange: [200, 250],
+        pipeVerticalDistanceRange: [250, 300],
       },
       normal: {
         pipeHorizontalDistanceRange: [300, 350],
-        pipeVerticalDistanceRange: [150, 200],
+        pipeVerticalDistanceRange: [200, 250],
       },
       hard: {
-        pipeHorizontalDistanceRange: [200, 250],
-        pipeVerticalDistanceRange: [100, 150],
+        pipeHorizontalDistanceRange: [250, 300],
+        pipeVerticalDistanceRange: [150, 200],
       },
     };
   }
@@ -249,6 +249,7 @@ class PlayScene extends BaseScene {
       delay: 1000,
       callback: () => {
         this.scene.restart();
+        this.currentDifficulty = 'easy';
       },
       loop: false,
     });
